@@ -6,8 +6,10 @@ UINT8 init_bank = 1;
 #include "StateGame.h"
 
 #include "SpritePlayer.h"
+#include "SpriteEnemy.h"
 
 #include "../res/src/player.h"
+#include "../res/src/enemy.h"
 
 UINT8 next_state = STATE_GAME;
 
@@ -19,5 +21,6 @@ void InitStates() {
 }
 
 void InitSprites() {
-	INIT_SPRITE(SPRITE_PLAYER, player, 3, FRAME_16x16, 1);
+	INIT_SPRITE(SPRITE_PLAYER, player, 3, FRAME_16x16, 3);
+	INIT_SPRITE(SPRITE_ENEMY,  enemy,  3, FRAME_16x16, 1);
 }

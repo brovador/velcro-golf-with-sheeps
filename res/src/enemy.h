@@ -1,15 +1,15 @@
 /*
 
- SRC/TILES.B3.C
+ ENEMY.H
 
- Tile Source File.
+ Include File.
 
  Info:
   Form                 : All tiles as one unit.
   Format               : Gameboy 4 color.
   Compression          : None.
   Counter              : None.
-  Tile size            : 8 x 8
+  Tile size            : 16 x 16
   Tiles                : 0 to 1
 
   Palette colors       : None.
@@ -22,13 +22,10 @@
 
 */
 
-/* Start of tile array. */
-const unsigned  char tiles[] =
-{
-  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-  0xCF,0x20,0xC3,0x20,0x00,0xFF,0xFB,0x04,
-  0xF9,0x04,0x78,0x04,0x00,0xFF,0xDF,0x20
-};
 
-/* End of SRC/TILES.B3.C */
+/* Bank of tiles. */
+#define enemyBank 0
+/* Start of tile array. */
+extern unsigned char enemy[];
+
+/* End of ENEMY.H */
