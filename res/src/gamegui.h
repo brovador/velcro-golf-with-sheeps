@@ -1,13 +1,13 @@
 /*
 
- MAP.H
+ GAMEGUI.H
 
  Map Include File.
 
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 40 x 19
+   Map size      : 20 x 3
    Tile set      : tiles.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -18,10 +18,10 @@
 
 */
 
-#define mapWidth 40
-#define mapHeight 19
-#define mapBank 0
+#define gameuiWidth 20
+#define gameuiHeight 3
+#define gameuiBank 0
 
-extern unsigned char map[];
+extern unsigned char gameui[];
 
-/* End of MAP.H */
+/* End of GAMEGUI.H */
