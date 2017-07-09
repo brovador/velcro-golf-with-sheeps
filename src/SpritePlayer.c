@@ -1,12 +1,19 @@
 #pragma bank 2
-#include "ZGBMain.h"
 #include "SpritePlayer.h"
-#include "Print.h"
 UINT8 bank_SPRITE_PLAYER = 2;
 
+#include "StateGame.h"
+
+#include "ZGBMain.h"
+#include "Print.h"
 #include "Keys.h"
 #include "SpriteManager.h"
 
+#define PLAYER_STATE_INIT 		0
+#define PLAYER_STATE_ROTATING	1
+#define PLAYER_STATE_MOVING		2
+
+UINT8 playerState = 0;
 UINT8 angle = 0;
 UINT8 frameCount = 0;
 
@@ -29,6 +36,7 @@ void Start_SPRITE_PLAYER() {
 	THIS->coll_y = 2;
 	THIS->coll_w = 12;
 	THIS->coll_h = 12;
+	playerState = PLAYER_STATE_INIT;
 	angle = 0xFF;
 }
 
@@ -53,32 +61,53 @@ void Update_SPRITE_PLAYER() {
 	frameCount++;
 
 	if (KEY_PRESSED(J_A)) {
-		angle = angle == 0 ? 1 : angle;
-		angle = (angle + 1 * ((frameCount % 11) == 0)) % 8;
-		anim_idle[1] = angle;
-		SetSpriteAnim(THIS, anim_idle, 10);
-	} else if (angle != 0xFF) {
-		oldx = THIS->x;
-		oldy = THIS->y;
-		x = X_MOVEMENT(angle) << delta_time;
-		y = Y_MOVEMENT(angle) << delta_time;
-		coll = TranslateSprite(THIS, x, y);
-		
-		if (coll == 1) {
-			if (angle == 0) angle = 4;
-			else if (angle == 1) angle = (THIS->y == oldy) ? 3 : 7;
-			else if (angle == 2) angle = 6;
-			else if (angle == 3) angle = (THIS->y == oldy) ? 1 : 5;
-			else if (angle == 4) angle = 0;
-			else if (angle == 5) angle = (THIS->y == oldy) ? 7 : 3;
-			else if (angle == 6) angle = 2;
-			else if (angle == 7) angle = (THIS->y == oldy) ? 5 : 1;
-		} else if (coll == 2) {
-			SetState(STATE_GAME);
-			return;
+		if (playerState == PLAYER_STATE_INIT || playerState == PLAYER_STATE_MOVING) {
+			playerState = PLAYER_STATE_ROTATING;
+			SetSpriteAnim(THIS, anim_idle, 10);
+			StateGame_AddMoves(1);
 		}
-		anim_angle[1] = angle;
-		SetSpriteAnim(THIS, anim_angle, 10);
+	} else {
+		if (playerState == PLAYER_STATE_ROTATING) {
+			playerState = PLAYER_STATE_MOVING;
+			anim_angle[1] = angle;
+			SetSpriteAnim(THIS, anim_angle, 10);
+		}
+	}
+
+	switch(playerState) {
+		case PLAYER_STATE_INIT: {
+			//nothing here...
+			break;
+		}
+		case PLAYER_STATE_ROTATING: {
+			angle = angle == 0 ? 1 : angle;
+			angle = (angle + 1 * ((frameCount % 11) == 0)) % 8;
+			anim_idle[1] = angle;
+			break;
+		}
+		case PLAYER_STATE_MOVING: {
+			oldx = THIS->x;
+			oldy = THIS->y;
+			x = X_MOVEMENT(angle) << delta_time;
+			y = Y_MOVEMENT(angle) << delta_time;
+			coll = TranslateSprite(THIS, x, y);
+			
+			if (coll == 1) {
+				if (angle == 0) angle = 4;
+				else if (angle == 1) angle = (THIS->y == oldy) ? 3 : 7;
+				else if (angle == 2) angle = 6;
+				else if (angle == 3) angle = (THIS->y == oldy) ? 1 : 5;
+				else if (angle == 4) angle = 0;
+				else if (angle == 5) angle = (THIS->y == oldy) ? 7 : 3;
+				else if (angle == 6) angle = 2;
+				else if (angle == 7) angle = (THIS->y == oldy) ? 5 : 1;
+				anim_angle[1] = angle;
+			} else if (coll == 2) {
+				SetState(STATE_GAME);
+				return;
+			}
+			break;
+		}
 	}
 }
 

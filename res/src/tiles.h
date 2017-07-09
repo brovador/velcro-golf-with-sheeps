@@ -1,6 +1,6 @@
 /*
 
- SRC/TILES.H
+ TILES.H
 
  Include File.
 
@@ -28,4 +28,4 @@
 /* Start of tile array. */
 extern unsigned char tiles[];
 
-/* End of SRC/TILES.H */
+/* End of TILES.H */

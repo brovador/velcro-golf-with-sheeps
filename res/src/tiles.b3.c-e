@@ -1,6 +1,6 @@
 /*
 
- SRC/TILES.B3.C
+ TILES.B3.C
 
  Tile Source File.
 
@@ -57,4 +57,4 @@ unsigned char tiles[] =
   0x7E,0x7A,0x7E,0x7E,0x3C,0x3C,0x00,0x00
 };
 
-/* End of SRC/TILES.B3.C */
+/* End of TILES.B3.C */
