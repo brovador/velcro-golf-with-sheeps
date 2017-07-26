@@ -92,7 +92,7 @@ void Update_SPRITE_PLAYER() {
 			y = Y_MOVEMENT(angle) << delta_time;
 			coll = TranslateSprite(THIS, x, y);
 			
-			if (coll == 1) {
+			if (coll == GAME_TILE_GRASS) {
 				if (angle == 0) angle = 4;
 				else if (angle == 1) angle = (THIS->y == oldy) ? 3 : 7;
 				else if (angle == 2) angle = 6;
@@ -102,7 +102,11 @@ void Update_SPRITE_PLAYER() {
 				else if (angle == 6) angle = 2;
 				else if (angle == 7) angle = (THIS->y == oldy) ? 5 : 1;
 				anim_angle[1] = angle;
-			} else if (coll == 2) {
+			} else if (coll == GAME_TILE_VELCRO) {
+				SetState(STATE_GAME);
+				return;
+			} else if (coll == GAME_TILE_HOLE) {
+				//Win
 				SetState(STATE_GAME);
 				return;
 			}

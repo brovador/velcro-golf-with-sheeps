@@ -7,7 +7,7 @@
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 20 x 3
+   Map size      : 20 x 2
    Tile set      : tiles.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -19,7 +19,7 @@
 */
 
 #define gameuiWidth 20
-#define gameuiHeight 3
+#define gameuiHeight 2
 #define gameuiBank 0
 
 extern unsigned char gameui[];

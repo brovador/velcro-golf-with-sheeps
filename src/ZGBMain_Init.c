@@ -2,7 +2,6 @@
 #include "ZGBMain.h"
 UINT8 init_bank = 1;
 
-
 #include "StateGame.h"
 
 #include "SpritePlayer.h"

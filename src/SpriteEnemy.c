@@ -13,10 +13,10 @@ void Start_SPRITE_ENEMY() {
 	struct EnemyInfo* data = (struct EnemyInfo*)(THIS->custom_data);
 	data->vy = 1;
 
-	THIS->coll_x = 3;
-	THIS->coll_y = 3;
-	THIS->coll_w = 10;
-	THIS->coll_h = 10;
+	THIS->coll_x = 4;
+	THIS->coll_y = 4;
+	THIS->coll_w = 8;
+	THIS->coll_h = 8;
 }
 
 void Update_SPRITE_ENEMY() {
