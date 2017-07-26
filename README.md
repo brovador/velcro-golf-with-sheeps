@@ -14,5 +14,5 @@ This version includes a fully playable level but no title/win/lose screens and s
 
 ## Preview:
 
-![Example](http://brovador.github.io/velcro-golf-with-sheeps/game-preview.gif
+![Example](http://brovador.github.io/velcro-golf-with-sheeps/game-preview.gif)
 
