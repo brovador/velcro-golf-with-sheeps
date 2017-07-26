@@ -1,6 +1,6 @@
 # Velcro Golf (with sheeps)
 
-![Example](http://brovador.github.io/velcro-golf-with-sheeps/preview.gif)
+![Example](http://brovador.github.io/velcro-golf-with-sheeps/game-preview.gif)
 
 This game is an unfinished entry for bitbitjam4 following its rules:
 
